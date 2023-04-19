@@ -1,0 +1,13 @@
+./client/src/components -> dito nyo lagay mga block of codes tas tawagin nyo nalang sa App.js.
+./client/src/services -> For getting the request, wag nyo na pansinin ako na bahal jan.
+
+
+
+
+
+
+
+--------------Comment-----------------
+"Bago kayo mag run try nyo cd client then npm run para mag open sa browser yung ReactJs" -Da
+
+"Ako na sa server-side guys" -Da
