@@ -1,15 +1,18 @@
 import React from 'react';
-import './App.css';
-import DisplayUsers from './components/displayUsers';
-
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DisplayUsers from './components/pages/DisplayUsers';
+import Header from './components/common/Header';
+import './styles/global.css'
 function App() {
-
   return (
-    <div>
-      <h1>This is App.js</h1>
-      <DisplayUsers />
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/users" element={<DisplayUsers />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

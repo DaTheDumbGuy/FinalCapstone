@@ -1,0 +1,9 @@
+:root{
+    --green: green;
+    --primary-color: #007bff;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

@@ -1,0 +1,15 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+}
+.navLinks{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    background-color: red;
+}
+.navLinks li{
+    background-color: var(--green);
+    list-style: none;
+}

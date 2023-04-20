@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { fetchReviews } from '../services/api';
-
+import { fetchReviews } from '../../services/api';
+//Testing serverside
 function DisplayUsers() {
     const [data, setData] = useState([]);
 
@@ -28,11 +28,13 @@ function DisplayUsers() {
                             </tr>
                         </thead>
                         <tbody>
-                            <td>{data.user_id}</td>
-                            <td>{data.first_name}</td>
-                            <td>{data.middle_name}</td>
-                            <td>{data.last_name}</td>
-                            <td>{data.email}</td>
+                            <tr>
+                                <td>{data.user_id}</td>
+                                <td>{data.first_name}</td>
+                                <td>{data.middle_name}</td>
+                                <td>{data.last_name}</td>
+                                <td>{data.email}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

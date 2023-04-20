@@ -1,15 +1,19 @@
 ./client/src/components -> dito nyo lagay mga block of codes tas tawagin nyo nalang sa App.js.
 ./client/src/services -> For getting the request, wag nyo na pansinin ako na bahal jan.
+./client/src/components/common -> dito yung mga components na reusable
+./client/src/components/pages -> Dito yung mga pages[About Us, contact Us etc...]
 
-
-
-
-
+./client/src/styles 
+    /common -> styles sa /components/common
+    /pages -> styles sa /components/pages
+    global.css -> Dito nyo lagay yung pang global na styles tulad nung :root kung saan nakalagay mga variable
 
 
 --------------Comment-----------------
-"Bago kayo mag run try nyo cd client then npm run para mag open sa browser yung ReactJs" -Da
+"Bago kayo mag run ng reactjs try nyo 'cd client' then 'npm run' para mag open sa browser yung ReactJs" -Da
 
-"Yung .env nyo baguhin nyo nalang password" -Da
+"Yung .env nyo baguhin nyo nalang password, magkaiba tayo e" -Da
 
 "Ako na sa server-side guys" -Da
+
+"Naka arrange na mga folder nyan, gawa nalanag kayo"
