@@ -10,4 +10,6 @@
 --------------Comment-----------------
 "Bago kayo mag run try nyo cd client then npm run para mag open sa browser yung ReactJs" -Da
 
+"Yung .env nyo baguhin nyo nalang password" -Da
+
 "Ako na sa server-side guys" -Da

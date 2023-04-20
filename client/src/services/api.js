@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:1000/auth/api';
+const API_URL = 'http://localhost:1000';
 
 const api = axios.create({
     baseURL: API_URL,
@@ -8,3 +8,7 @@ const api = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+export const fetchReviews = () => {
+    return api.get('/auth/api/get');
+};

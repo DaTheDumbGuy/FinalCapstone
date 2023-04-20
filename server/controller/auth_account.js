@@ -8,6 +8,15 @@ const db = mySql.createConnection({
     port: process.env.DATABASE_PORT
 });
 
+db.connect(function (err) {
+    if (err) {
+        console.error('Error connecting to MySQL: ' + err.stack);
+        return;
+    }
+
+    console.log('Connected to MySQL as ID ' + db.threadId);
+});
+
 // exports.add = (req, res) => {
 //     const { movieName, movieReview } = req.body;
 //     db.query(
@@ -24,12 +33,16 @@ const db = mySql.createConnection({
 //         }
 //     );
 // };
-// exports.display = (req, res) => {
-//     db.query(`SELECT * FROM movie_reviews`, (err, result) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.send(result);
-//         }
-//     })
-// }
+
+//For debugging purpose
+exports.checkUsers = (req, res) => {
+    db.query(`SELECT * FROM users`, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(result);
+            res.json(result);
+
+        }
+    })
+}
