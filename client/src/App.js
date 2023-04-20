@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import DisplayUsers from './components/DisplayUsers';
+import DisplayUsers from './components/displayUsers';
 
 
 function App() {
