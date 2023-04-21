@@ -13,11 +13,11 @@ function Header() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            {/* Testing */}
+            {/* Testing, you can remove this */}
             <Link to="/users">DisplayUsers</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </nav>

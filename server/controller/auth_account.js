@@ -36,7 +36,7 @@ db.connect(function (err) {
 
 //For debugging purpose
 exports.checkUsers = (req, res) => {
-    db.query(`SELECT * FROM users`, (err, result) => {
+    db.query(`SELECT * FROM members`, (err, result) => {
         if (err) {
             console.log(err);
         } else {

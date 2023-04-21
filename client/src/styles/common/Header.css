@@ -7,9 +7,9 @@ nav{
     display: flex;
     justify-content: space-around;
     width: 50%;
-    background-color: red;
+    background-color: blue;
 }
 .navLinks li{
-    background-color: var(--green);
+    background-color: var(--light-blue);
     list-style: none;
 }

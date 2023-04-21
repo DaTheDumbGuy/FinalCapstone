@@ -15,25 +15,40 @@ function DisplayUsers() {
 
     return (
         <div>
+            <h1>This is DIsplayUsers</h1>
             {data.map((data) => (
                 <div key={data.user_id}>
                     <table border={1}>
                         <thead>
                             <tr>
-                                <th>User ID</th>
+                                <th>Member ID</th>
                                 <th>First Name</th>
-                                <th>Middle Name</th>
                                 <th>Last Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
                                 <th>Email</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Marital Status</th>
+                                <th>Occupation</th>
+                                <th>Date Joined</th>
+                                <th>Membership Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{data.user_id}</td>
+                                <td>{data.member_id}</td>
                                 <td>{data.first_name}</td>
-                                <td>{data.middle_name}</td>
                                 <td>{data.last_name}</td>
+                                <td>{data.address}</td>
+                                <td>{data.phone_number}</td>
                                 <td>{data.email}</td>
+                                <td>{data.date_of_birth}</td>
+                                <td>{data.gender}</td>
+                                <td>{data.marital_status}</td>
+                                <td>{data.occupation}</td>
+                                <td>{data.date_joined}</td>
+                                <td>{data.membership_status}</td>
                             </tr>
                         </tbody>
                     </table>
