@@ -7,17 +7,20 @@ function Header() {
   return (
     <div>
       <nav>
-        <h2>Logo</h2>
-        <ul className='navLinks'>
+        <ul className='nav'>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className='navLink'>Home</Link>
           </li>
+          <li>
+            <Link to="/about" className='navLink'>About</Link>
+          </li>
+          <div><h1>Life Home Center</h1> </div>
           <li>
             {/* Testing, you can remove this */}
-            <Link to="/users">DisplayUsers</Link>
+            <Link to="/contact" className='navLink'>Contact</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/login" className='navLink'>Login</Link>
           </li>
         </ul>
       </nav>
