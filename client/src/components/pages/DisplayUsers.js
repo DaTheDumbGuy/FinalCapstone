@@ -15,7 +15,7 @@ function DisplayUsers() {
 
     return (
         <div>
-            <h1>This is DIsplayUsers</h1>
+            <h1>This is DisplayUsers</h1>
             {data.map((data) => (
                 <div key={data.member_id}>
                     <table border={1}>

@@ -5,26 +5,25 @@ import '../../styles/common/Header.css';
 //navigation(header) here
 function Header() {
   return (
-    <div>
+    <header>
       <nav>
         <ul className='nav'>
           <li>
-            <Link to="/" className='navLink'>Home</Link>
+            <a href='#' className='navLink'>Home</a>
           </li>
           <li>
-            <Link to="/about" className='navLink'>About</Link>
+            <a href='#' className='navLink'>About</a>
           </li>
-          <div><h1>Life Home Center</h1> </div>
+          <div><a href='#'>Life Home Center</a> </div>
           <li>
-            {/* Testing, you can remove this */}
-            <Link to="/contact" className='navLink'>Contact</Link>
+            <a href='#' className='navLink'>Contact</a>
           </li>
           <li>
             <Link to="/login" className='navLink'>Login</Link>
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 }
 
