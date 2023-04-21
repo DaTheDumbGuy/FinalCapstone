@@ -17,7 +17,7 @@ function DisplayUsers() {
         <div>
             <h1>This is DIsplayUsers</h1>
             {data.map((data) => (
-                <div key={data.user_id}>
+                <div key={data.member_id}>
                     <table border={1}>
                         <thead>
                             <tr>
