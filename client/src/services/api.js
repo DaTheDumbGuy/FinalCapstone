@@ -12,3 +12,9 @@ const api = axios.create({
 export const fetchReviews = () => {
     return api.get('/auth/api/get');
 };
+
+export const login = (credentials) => {
+    return api.post('/auth/login', credentials);
+}
+
+

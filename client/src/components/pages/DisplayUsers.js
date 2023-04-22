@@ -32,7 +32,6 @@ function DisplayUsers() {
                                 <th>Marital Status</th>
                                 <th>Occupation</th>
                                 <th>Date Joined</th>
-                                <th>Membership Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +47,6 @@ function DisplayUsers() {
                                 <td>{data.marital_status}</td>
                                 <td>{data.occupation}</td>
                                 <td>{data.date_joined}</td>
-                                <td>{data.membership_status}</td>
                             </tr>
                         </tbody>
                     </table>

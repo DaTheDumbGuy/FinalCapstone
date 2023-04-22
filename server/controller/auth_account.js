@@ -17,24 +17,6 @@ db.connect(function (err) {
     console.log('Connected to MySQL as ID ' + db.threadId);
 });
 
-// exports.add = (req, res) => {
-//     const { movieName, movieReview } = req.body;
-//     db.query(
-//         'INSERT INTO movie_reviews(movie_name, movie_review) VALUES (?, ?)',
-//         [movieName, movieReview],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//                 res.status(500).send('Error inserting movie review');
-//             } else {
-//                 console.log(result);
-//                 res.status(200).send('Movie review added successfully');
-//             }
-//         }
-//     );
-// };
-
-//For debugging purpose
 exports.checkUsers = (req, res) => {
     db.query(`SELECT * FROM members`, (err, result) => {
         if (err) {

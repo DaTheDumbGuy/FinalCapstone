@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Login from './components/pages/Login';
+import Register from './components/pages/Register';
+import DisplayUsers from './components/pages/DisplayUsers';
+
 import './styles/global.css'
 
 function App() {
@@ -17,11 +20,13 @@ function MainContent() {
   const location = useLocation();
 
   return (
-    <>
+    <>{/* Testing route for Server side*/}
       {location.pathname !== '/login' && <Header />} {/* Render the header only if the URL path is not "/login" */}
       <main>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/display" element={<DisplayUsers />} />
         </Routes>
       </main>
       {location.pathname !== '/login' && <Footer />} {/* Render the footer only if the URL path is not "/login" */}
