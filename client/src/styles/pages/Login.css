@@ -1,4 +1,4 @@
-body {
+.page {
     height: 100vh;
     background: linear-gradient(to right, #4b4b4b, #2b2b2b);          
 }

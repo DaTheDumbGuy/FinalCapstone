@@ -29,13 +29,15 @@ function Login() {
     };
 
     return (
-        <div className='formContainer'>
-            <LoginForm onSubmit={handleLogin} serverError={errorMessage} />
-            <div
-                className={`seContainer ${submitted ? 'buzz' : ''}`}
-                onAnimationEnd={handleAnimationEnd}
-            >
-                {errorMessage && <p className='server-error'>{errorMessage}</p>}
+        <div className='page'>
+            <div className='formContainer'>
+                <LoginForm onSubmit={handleLogin} serverError={errorMessage} />
+                <div
+                    className={`seContainer ${submitted ? 'buzz' : ''}`}
+                    onAnimationEnd={handleAnimationEnd}
+                >
+                    {errorMessage && <p className='server-error'>{errorMessage}</p>}
+                </div>
             </div>
         </div>
     );
