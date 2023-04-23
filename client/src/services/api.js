@@ -12,9 +12,16 @@ const api = axios.create({
 export const fetchReviews = () => {
     return api.get('/auth/api/get');
 };
-
-export const login = (credentials) => {
-    return api.post('/auth/login', credentials);
-}
+export const login = async (credentials) => {
+    console.log('Calling login function with credentials:', credentials);
+    try {
+        const response = await axios.post('/auth/login', credentials);
+        console.log('Login successful with response data:', response.data);
+        return response;
+    } catch (error) {
+        console.error('Error in login:', error);
+        throw error;
+    }
+};
 
 

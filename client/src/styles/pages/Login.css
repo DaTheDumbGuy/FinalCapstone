@@ -1,0 +1,57 @@
+body {
+    height: 100vh;
+    background: linear-gradient(to right, #4b4b4b, #2b2b2b);          
+}
+
+.formContainer{
+    color: black;
+    position: absolute;
+    top: 40%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color:rgba(245, 245, 245, 0.8);
+    margin: auto;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+}
+
+.server-error{
+    color:white;
+    text-align: center;
+    padding:10px 0;
+    height: 100%;
+    background-color: lightcoral;
+    border: 2px solid red;
+}
+
+.seContainer{
+    width: 90%;
+    margin: auto;
+    height: 45px;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+
+}
+
+.buzz{
+    animation: buzz 0.2s;
+}
+
+@keyframes buzz {
+    0% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+    25% {
+      transform: translateX(2px) rotate(2deg);
+    }
+    50% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+    75% {
+      transform: translateX(2px) rotate(2deg);
+    }
+    100% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+}

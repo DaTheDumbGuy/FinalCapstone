@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
+import LockIcon from '@mui/icons-material/Lock';
+import '../../styles/common/LoginForm.css';
+
 
 function LoginForm({ onSubmit }) {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
@@ -25,35 +28,52 @@ function LoginForm({ onSubmit }) {
         }
         if (!password) {
             errors.password = 'Password is required';
-        } else if (password.length < 6) {
-            errors.password = 'Password must be at least 6 characters long';
         }
         return errors;
     };
+    useEffect(() => {
+        setErrors({});
+    }, [email, password]);
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                />
-                {errors.email && <span>{errors.email}</span>}
+            <h2>Sign In</h2>
+            <div >
+                <div className="input-container">
+                    <div className="input-icon">
+                        <PersonIcon />
+                    </div>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        placeholder='Email'
+                    />
+                </div>
+                <div className="error-container">
+                    {errors.email && <span>{errors.email}</span>}
+                </div>
             </div>
             <div>
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                />
-                {errors.password && <span>{errors.password}</span>}
+                <div className="input-container">
+                    <div className="input-icon">
+                        <LockIcon />
+                    </div>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        placeholder='Password'
+                    />
+                </div>
+                <div className="error-container">
+                    {errors.password && <span >{errors.password}</span>}
+                </div>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" className='loginBTN'>Sign In</button>
+            <div className="fpContainer"><a href="/forgotPassword" className='forgotPassword'><small>Forgot password?</small></a></div>
         </form>
     );
 }
