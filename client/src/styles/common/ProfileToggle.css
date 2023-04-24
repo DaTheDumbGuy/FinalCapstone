@@ -1,0 +1,16 @@
+.profileToggle button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}   
+
+.profileToggle .dropdown{
+    position: absolute;
+    background-color: green;
+    bottom: -80px;
+    right: -20px;
+}
+.profileToggle{
+    position: relative;
+    background-color: red;
+}

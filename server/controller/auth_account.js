@@ -109,3 +109,12 @@ exports.loginAccount = async (req, res) => {
         res.status(500).send("Server error");
     }
 }
+
+//For checking if the user logged in
+exports.loginStatus = (req, res) => {
+    if (req.session.member_id) {
+        res.status(200).json({ member_id: req.session.member_id });
+    } else {
+        res.status(401).send('User not logged in');
+    }
+}

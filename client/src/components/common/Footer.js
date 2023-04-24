@@ -4,14 +4,14 @@ function Footer() {
     return (
         <div>
             <footer>
-                <div>
+                <div className='footer-item1'>
                     <h4>Contact</h4>
                     <p><i className='bx bxs-phone'></i> (083) 552 2121</p>
                     <p><i className='bx bxs-envelope' ></i> lifehome55@yahoo.com</p>
                     <p><i className='bx bxs-map' ></i> Life Compound, Guinto Street Extension,
                         Brgy. San Isidro, General Santos City, Philippines</p>
                 </div>
-                <div>
+                <div className='footer-item2'>
                     <h2>LifeHome Mindanao</h2>
                     <p>A non-profit organization dedicated for orphaned children.</p>
                     <ul className='social_links'>
