@@ -99,7 +99,8 @@ exports.loginAccount = async (req, res) => {
                 console.log("password do not match");
                 res.status(401).send("Password is incorrect");
             } else {
-                console.log("you logged in!")
+                console.log("you logged in!");
+                req.session.member_id = data[0].member_id;
                 res.redirect('/');
             }
         }
