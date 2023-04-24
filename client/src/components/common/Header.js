@@ -9,15 +9,15 @@ function Header() {
       <nav>
         <ul className='nav'>
           <li>
-            <Link to="/" className='navLink'>Home</Link>
+          <Link to="/home" className='navLink'>Home</Link>
           </li>
           <li>
-            <Link to="/about" className='navLink'>About</Link>
+            <a href='#about'>About</a>
           </li>
-          <div><h1>Life Home Center</h1> </div>
+          <div><h1>LifeHome Mindanao</h1> </div>
           <li>
             {/* Testing, you can remove this */}
-            <Link to="/contact" className='navLink'>Contact</Link>
+            <a href='#contact'>Contact</a>
           </li>
           <li>
             <Link to="/login" className='navLink'>Login</Link>
