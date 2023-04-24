@@ -29,14 +29,18 @@ function Login() {
     };
 
     return (
-        <div className='page'>
-            <div className='formContainer'>
+        <div className='login-page'>
+            <div className='login-container'>
                 <LoginForm onSubmit={handleLogin} serverError={errorMessage} />
                 <div
                     className={`seContainer ${submitted ? 'buzz' : ''}`}
                     onAnimationEnd={handleAnimationEnd}
                 >
                     {errorMessage && <p className='server-error'>{errorMessage}</p>}
+                </div>
+                <hr className='login-line' />
+                <div className='registerContainer'>
+                    <a href="/register" className='register-link underline'>Create Account</a>
                 </div>
             </div>
         </div>

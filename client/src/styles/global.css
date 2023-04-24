@@ -7,3 +7,47 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+
+/* Animation -- utilities */
+.buzz{
+    animation: buzz 0.2s;
+}
+
+.underline {
+    position: relative;
+    display: inline-block;
+}
+
+.underline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-in-out;
+}
+  
+.underline:hover::before {
+    width: 100%;
+}
+@keyframes buzz {
+    0% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+    25% {
+      transform: translateX(2px) rotate(2deg);
+    }
+    50% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+    75% {
+      transform: translateX(2px) rotate(2deg);
+    }
+    100% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+}

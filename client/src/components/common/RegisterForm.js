@@ -1,22 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function RegisterForm({ onSubmit }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [gender, setGender] = useState('');
-    const [maritalStatus, setMaritalStatus] = useState('');
-    const [occupation, setOccupation] = useState('');
+    const [confirm_password, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({});
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
-            onSubmit({ firstName, lastName, address, phoneNumber, email, password, gender, maritalStatus, occupation });
+            onSubmit({ firstName, lastName, email, password, confirm_password });
         } else {
             setErrors(validationErrors);
         }
@@ -34,12 +30,24 @@ function RegisterForm({ onSubmit }) {
             errors.password = 'Password is required';
         }
         if (!email) {
-            errors.password = 'Email is required';
+            errors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(email)) {
             errors.email = 'Invalid email address';
         }
+        if (!confirm_password) {
+            errors.confirm_password = 'Confirm Password is required';
+        }
+        if (password && confirm_password) {
+            if (password !== confirm_password) {
+                errors.confirm_password = 'Password do not match';
+            }
+        }
         return errors;
     }
+
+    useEffect(() => {
+        setErrors({});
+    }, [firstName, lastName, password, email, confirm_password])
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -65,28 +73,6 @@ function RegisterForm({ onSubmit }) {
             </div>
 
             <div>
-                <label htmlFor='address'>Address</label>
-                <input
-                    type="text"
-                    id="address"
-                    value={address}
-                    onChange={(event) => setAddress(event.target.value)}
-                />
-                {errors.address && <span>{errors.address}</span>}
-            </div>
-
-            <div>
-                <label htmlFor='phoneNumber'>Phone Number</label>
-                <input
-                    type="text"
-                    id="phoneNumber"
-                    value={phoneNumber}
-                    onChange={(event) => setPhoneNumber(event.target.value)}
-                />
-                {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
-            </div>
-
-            <div>
                 <label htmlFor='email'>Email</label>
                 <input
                     type="text"
@@ -109,45 +95,16 @@ function RegisterForm({ onSubmit }) {
             </div>
 
             <div>
-                <label htmlFor='male'>Gender</label>
+                <label htmlFor='confirm_password'>Confirm Password</label>
                 <input
-                    type="radio"
-                    id="male"
-                    name="gender"
-                    value="Male"
-                    onChange={(event) => setGender(event.target.value)}
+                    type="password"
+                    id="confirm_password"
+                    value={confirm_password}
+                    onChange={(event) => setConfirmPassword(event.target.value)}
                 />
-                <label htmlFor='male'>Male</label>
-
-                <input
-                    type="radio"
-                    id="female"
-                    name="gender"
-                    value="Female"
-                    onChange={(event) => setGender(event.target.value)}
-                />
-                <label htmlFor='female'>Female</label>
+                {errors.confirm_password && <span>{errors.confirm_password}</span>}
             </div>
 
-            <div>
-                <label htmlFor="marital-status">Marital Status</label>
-                <select id="marital-status" value={maritalStatus} onChange={(event) => setMaritalStatus(event.target.value)}>
-                    <option value="Single">Single</option>
-                    <option value="Married">Married</option>
-                    <option value="Divorced">Divorced</option>
-                    <option value="Widowed">Widowed</option>
-                </select>
-            </div>
-
-            <div>
-                <label htmlFor='occupation'>occupation</label>
-                <input
-                    type="text"
-                    id="occupation"
-                    value={occupation}
-                    onChange={(event) => setOccupation(event.target.value)}
-                />
-            </div>
             <button type="submit">Submit</button>
         </form>
     )

@@ -1,22 +1,40 @@
-.page {
+.login-page {
     height: 100vh;
-    background: linear-gradient(to right, #4b4b4b, #2b2b2b);          
+    background-repeat: no-repeat;
+    background-image: linear-gradient(200deg, rgba(225, 225,225, 0.5), rgba(50, 50, 50, 0.5)), url('https://4.bp.blogspot.com/-NhYA1gvpZVs/VtmF6KqrKiI/AAAAAAAAejY/OcisIsm31YM/s1600/church%2Binterior%2Btaken%2B10212013.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.login-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+  
+
+.login-container h2{
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-.formContainer{
+.login-container{
     color: black;
     position: absolute;
     top: 40%;
     left: 50%; 
     transform: translate(-50%, -50%);
-    background-color:rgba(245, 245, 245, 0.8);
+    background-color:rgba(245, 245, 245, 0.7);
     margin: auto;
     font-size: 1.2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
-.server-error{
+.login-container .server-error{
     color:white;
     text-align: center;
     padding:10px 0;
@@ -25,33 +43,36 @@
     border: 2px solid red;
 }
 
-.seContainer{
-    width: 90%;
+.login-container .seContainer{
+    padding: 0 50px;
     margin: auto;
     height: 45px;
-    margin-bottom: 20px;
     transition: all 0.2s;
 
 }
+.login-line{
+    border: 1px solid grey;
+    width: 80%;
+    margin: 10px auto 10px auto;
 
-.buzz{
-    animation: buzz 0.2s;
 }
 
-@keyframes buzz {
-    0% {
-      transform: translateX(-2px) rotate(-2deg);
-    }
-    25% {
-      transform: translateX(2px) rotate(2deg);
-    }
-    50% {
-      transform: translateX(-2px) rotate(-2deg);
-    }
-    75% {
-      transform: translateX(2px) rotate(2deg);
-    }
-    100% {
-      transform: translateX(-2px) rotate(-2deg);
+.registerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 50px 0;
+}
+.registerContainer .register-link {
+    color: black;
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 599px) { 
+    .login-container .seContainer{
+       width: 95%;
+       padding: 0 20px 0;
     }
 }
+

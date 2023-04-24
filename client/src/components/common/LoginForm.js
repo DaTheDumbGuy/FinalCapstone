@@ -36,7 +36,7 @@ function LoginForm({ onSubmit }) {
     }, [email, password]);
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='login-form'>
             <h2>Sign In</h2>
             <div >
                 <div className="input-container">
@@ -73,7 +73,15 @@ function LoginForm({ onSubmit }) {
                 </div>
             </div>
             <button type="submit" className='loginBTN'>Sign In</button>
-            <div className="fpContainer"><a href="/forgotPassword" className='forgotPassword'><small>Forgot password?</small></a></div>
+            <div className="fpContainer">
+                <div className='remember-me-container'>
+                    <input type='checkbox' id='remember-me' />
+                    <label htmlFor='remember-me'><small>Remember me</small></label>
+                </div>
+                <a href="/forgotPassword" className='forgotPassword underline'>
+                    <small>Forgot password?</small>
+                </a>
+            </div>
         </form>
     );
 }

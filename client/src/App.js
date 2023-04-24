@@ -21,7 +21,7 @@ function MainContent() {
 
   return (
     <>{/* Testing route for Server side*/}
-      {location.pathname !== '/login' && <Header />} {/* Render the header only if the URL path is not "/login" */}
+      {location.pathname !== '/login' && location.pathname !== '/register' && <Header />} {/* Render the header only if the URL path is not "/login" and /register */}
       <main>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -29,7 +29,7 @@ function MainContent() {
           <Route path="/display" element={<DisplayUsers />} />
         </Routes>
       </main>
-      {location.pathname !== '/login' && <Footer />} {/* Render the footer only if the URL path is not "/login" */}
+      {location.pathname !== '/login' && location.pathname !== '/register' && <Footer />} {/* Render the footer only if the URL path is not "/login" and /register */}
     </>
   );
 }
