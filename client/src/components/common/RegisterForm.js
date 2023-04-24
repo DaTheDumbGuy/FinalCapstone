@@ -50,53 +50,45 @@ function RegisterForm({ onSubmit }) {
     }, [firstName, lastName, password, email, confirm_password])
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className='inputBox1'>
                 <label htmlFor='firstName'>First Name</label>
-                <input
+                <input className='inputBox'
                     type="text"
                     id="firstName"
                     value={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
                 />
                 {errors.firstName && <span>{errors.firstName}</span>}
-            </div>
 
-            <div>
                 <label htmlFor='lastName'>Last Name</label>
-                <input
+                <input className='inputBox'
                     type="text"
                     id="lastName"
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
                 />
                 {errors.lastName && <span>{errors.lastName}</span>}
-            </div>
-
-            <div>
+ 
                 <label htmlFor='email'>Email</label>
-                <input
+                <input className='inputBox'
                     type="text"
                     id="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
                 {errors.email && <span>{errors.email}</span>}
-            </div>
 
-            <div>
                 <label htmlFor='password'>Password</label>
-                <input
+                <input className='inputBox'
                     type="password"
                     id="password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                 />
                 {errors.password && <span>{errors.password}</span>}
-            </div>
 
-            <div>
                 <label htmlFor='confirm_password'>Confirm Password</label>
-                <input
+                <input className='inputBox'
                     type="password"
                     id="confirm_password"
                     value={confirm_password}
@@ -104,8 +96,7 @@ function RegisterForm({ onSubmit }) {
                 />
                 {errors.confirm_password && <span>{errors.confirm_password}</span>}
             </div>
-
-            <button type="submit">Submit</button>
+            <button type="submit" className='enter'>Submit</button>
         </form>
     )
 }
