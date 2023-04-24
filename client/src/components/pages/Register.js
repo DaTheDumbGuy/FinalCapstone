@@ -21,7 +21,7 @@ function Register() {
 
     return (
         <div className='register-page'>
-            <h1>This is Register</h1>
+            <h1>Sign Up</h1>
             {error ? <p>{error}</p> : response ? <p>{response}</p> : null}
             <RegisterForm onSubmit={handleRegister} />
         </div>
