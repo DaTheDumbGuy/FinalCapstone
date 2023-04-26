@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function RegisterForm({ onSubmit }) {
+function RegisterForm({ onSubmit, serverError }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -50,53 +50,68 @@ function RegisterForm({ onSubmit }) {
     }, [firstName, lastName, password, email, confirm_password])
     return (
         <form onSubmit={handleSubmit}>
-            <div className='inputBox1'>
-                <label htmlFor='firstName'>First Name</label>
-                <input className='inputBox'
-                    type="text"
-                    id="firstName"
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
-                />
-                {errors.firstName && <span>{errors.firstName}</span>}
-
-                <label htmlFor='lastName'>Last Name</label>
-                <input className='inputBox'
-                    type="text"
-                    id="lastName"
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
-                />
-                {errors.lastName && <span>{errors.lastName}</span>}
- 
-                <label htmlFor='email'>Email</label>
-                <input className='inputBox'
-                    type="text"
-                    id="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                />
-                {errors.email && <span>{errors.email}</span>}
-
-                <label htmlFor='password'>Password</label>
-                <input className='inputBox'
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                />
-                {errors.password && <span>{errors.password}</span>}
-
-                <label htmlFor='confirm_password'>Confirm Password</label>
-                <input className='inputBox'
-                    type="password"
-                    id="confirm_password"
-                    value={confirm_password}
-                    onChange={(event) => setConfirmPassword(event.target.value)}
-                />
-                {errors.confirm_password && <span>{errors.confirm_password}</span>}
+            <div className='serverError'>
+                {serverError && <p>{serverError}</p>}
             </div>
-            <button type="submit" className='enter'>Submit</button>
+            <div className='card'>
+                <h1>Sign Up</h1>
+                <div className="inputBox">
+                    <input
+                        type="text"
+                        id="firstName"
+                        value={firstName}
+                        onChange={(event) => setFirstName(event.target.value)}
+                    />
+                    <label className={firstName ? 'inputLabel' : ''}>First Name</label>
+                </div>
+                <div className="errContainer">{errors.firstName && <span className='errorMsg'>{errors.firstName}</span>}</div>
+
+                <div className="inputBox">
+                    <input
+                        type="text"
+                        id="lastName"
+                        value={lastName}
+                        onChange={(event) => setLastName(event.target.value)}
+
+                    />
+                    <label className={lastName ? 'inputLabel' : ''}>Last Name</label>
+                </div>
+                <div className="errContainer">{errors.lastName && <span className='errorMsg'>{errors.lastName}</span>}</div>
+                <div className="inputBox">
+                    <input
+                        type="text"
+                        id="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
+                    <label className={email ? 'inputLabel' : ''}>Email</label>
+                </div>
+                <div className="errContainer">{errors.email && <span className='errorMsg'>{errors.email}</span>}</div>
+
+                <div className="inputBox">
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    <label className={password ? 'inputLabel' : ''}>Password</label>
+                </div>
+                <div className="errContainer">{errors.password && <span className='errorMsg'>{errors.password}</span>}</div>
+
+                <div className="inputBox">
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        value={confirm_password}
+                        onChange={(event) => setConfirmPassword(event.target.value)}
+                    />
+                    <label className={confirm_password ? 'inputLabel' : ''}>Confirm Password</label>
+                </div>
+                <div className="errContainer">{errors.confirm_password && <span className='errorMsg'>{errors.confirm_password}</span>}</div>
+                <div className="btnContainer"><button type="submit" className='enter'>Submit</button></div>
+            </div>
+
         </form>
     )
 }

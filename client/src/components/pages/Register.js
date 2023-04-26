@@ -5,13 +5,15 @@ import { register } from '../../services/api';
 
 function Register() {
     const [error, setError] = useState('');
-    const [response, setResponse] = useState('');
+    // const [response, setResponse] = useState('');
     const handleRegister = async (formData) => {
         try {
             const response = await register(formData);
             console.log('Register successful with response data: ', response.data);
             console.log(`Success -> ${JSON.stringify(response.data.message)}`);
-            setResponse(response.data.message);
+            alert("Success Register!");
+            window.location.href = '/login';
+            // setResponse(response.data.message);
         } catch (error) {
             console.error('Error in registration: ', error);
             console.log(formData);
@@ -21,9 +23,8 @@ function Register() {
 
     return (
         <div className='register-page'>
-            <h1>Sign Up</h1>
-            {error ? <p>{error}</p> : response ? <p>{response}</p> : null}
-            <RegisterForm onSubmit={handleRegister} />
+            {/* {error ? <p>{error}</p> : response ? <p>{response}</p> : null} */}
+            <RegisterForm onSubmit={handleRegister} serverError={error} />
         </div>
     );
 }
