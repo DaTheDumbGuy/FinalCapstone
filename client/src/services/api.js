@@ -49,3 +49,8 @@ export const checkLoginStatus = async () => {
         throw error;
     }
 };
+
+export const logout = () => {
+    return api.post('/auth/logout');
+}
+

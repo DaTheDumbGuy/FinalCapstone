@@ -7,6 +7,7 @@ import ProfileToggle from './ProfileToggle';
 //navigation(header) here
 function Header() {
   const [user, setUser] = useState('');
+
   useEffect(() => {
     checkLoginStatus()
       .then((member_id) => {

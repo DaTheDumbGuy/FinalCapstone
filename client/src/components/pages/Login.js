@@ -2,18 +2,25 @@ import React, { useState } from 'react';
 import LoginForm from '../common/LoginForm';
 import { login } from '../../services/api';
 import '../../styles/pages/Login.css';
+import Loading from '../common/Loading';
 
 function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async (formData) => {
         try {
+            setIsLoading(true);
             const response = await login(formData);
             console.log(response.data);
             console.log('Redirecting to dashboard...');
-            alert("Success Login!");
-            window.location.href = '/';
+            // alert("Success Login!");
+            setTimeout(() => {
+                setIsLoading(false);
+                window.location.href = '/';
+            }, 1000);
+            // window.location.href = '/';
         } catch (error) {
             console.error(error);
             if (error.response.status === 401) {
@@ -43,6 +50,7 @@ function Login() {
                     <a href="/register" className='register-link underline'>Create Account</a>
                 </div>
             </div>
+            {isLoading && <Loading />}
         </div>
     );
 }

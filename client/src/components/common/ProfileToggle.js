@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import '../../styles/common/ProfileToggle.css';
+import { logout } from '../../services/api';
 
 function ProfileToggle() {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,9 +12,15 @@ function ProfileToggle() {
     };
 
     const handleLogout = () => {
-        // Implement logout functionality here
+        logout()
+            .then(response => {
+                console.log(response.data); // should print 'Session ended'
+                window.location.href = '/login';
+            })
+            .catch(error => {
+                console.log('Error ending session:', error);
+            });
     };
-
     return (
         <div className='profileToggle'>
             <button onClick={handleToggle}>

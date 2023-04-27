@@ -101,7 +101,7 @@ exports.loginAccount = async (req, res) => {
             } else {
                 console.log("you logged in!");
                 req.session.member_id = data[0].member_id;
-                res.redirect('/');
+                // res.redirect('/');
             }
         }
     } catch (err) {
@@ -118,3 +118,15 @@ exports.loginStatus = (req, res) => {
         res.status(401).send('User not logged in');
     }
 }
+
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log('Error ending session:', err);
+            res.status(500).send('Error ending session');
+        } else {
+            console.log('Session ended(server)');
+            res.status(200).send('Session ended');
+        }
+    });
+};
