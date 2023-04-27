@@ -15,22 +15,9 @@ app.use(session({
 }));
 
 
-// app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-
-
-function requireLogin(req, res, next) {
-    console.log(member_id);
-    if (req.session && req.session.member_id) {
-        // User is authenticated, allow access to the next route
-        next();
-    } else {
-        // User is not authenticated, redirect to the login page
-        res.redirect('/login');
-    }
-}
 
 app.use('/auth', require('./routes/auth'));
 

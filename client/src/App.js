@@ -11,7 +11,12 @@ import './styles/global.css'
 function App() {
   return (
     <Router>
-      <MainContent />
+      <Routes>
+        <Route path='/' element={<MainContent />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/display" element={<DisplayUsers />} />
+      </Routes>
     </Router>
   );
 }
@@ -20,14 +25,10 @@ function MainContent() {
   const location = useLocation();
 
   return (
-    <>{/* Testing route for Server side*/}
+    <>
       {location.pathname !== '/login' && location.pathname !== '/register' && <Header />} {/* Render the header only if the URL path is not "/login" and /register */}
       <main>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/display" element={<DisplayUsers />} />
-        </Routes>
+        {/* Please put here the content  */}
       </main>
       {location.pathname !== '/login' && location.pathname !== '/register' && <Footer />} {/* Render the footer only if the URL path is not "/login" and /register */}
     </>

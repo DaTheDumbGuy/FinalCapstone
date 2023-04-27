@@ -92,20 +92,20 @@ exports.loginAccount = async (req, res) => {
         console.log([data]);
         if (!data[0]) {
             console.log("email is incorrect");
-            res.status(401).send("Email is incorrect");
+            res.status(401).json({ status: 'error', message: 'Email is incorrect' });
         } else {
             const passwordMatch = await encrypt.compare(password, data[0].password);
             if (!passwordMatch) {
                 console.log("password do not match");
-                res.status(401).send("Password is incorrect");
+                res.status(401).json({ status: 'error', message: 'Password is incorrect' });
             } else {
                 console.log("you logged in!");
                 req.session.member_id = data[0].member_id;
-                res.redirect('/');
+                res.json({ status: 'success', message: 'Login successful' });
             }
         }
     } catch (err) {
         console.log(`Error: ${err}`);
-        res.status(500).send("Server error");
+        res.status(500).json({ status: 'error', message: 'Server error' });
     }
 }
