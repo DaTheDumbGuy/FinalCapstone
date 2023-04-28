@@ -18,6 +18,7 @@ function App() {
         <Route path="/display" element={<DisplayUsers />} />
       </Routes>
     </Router>
+
   );
 }
 

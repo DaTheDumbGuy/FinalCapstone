@@ -109,3 +109,25 @@ exports.loginAccount = async (req, res) => {
         res.status(500).json({ status: 'error', message: 'Server error' });
     }
 }
+
+
+//For checking if the user logged in
+exports.loginStatus = (req, res) => {
+    if (req.session.member_id) {
+        res.status(200).json({ member_id: req.session.member_id });
+    } else {
+        res.status(401).send('User not logged in');
+    }
+}
+
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log('Error ending session:', err);
+            res.status(500).send('Error ending session');
+        } else {
+            console.log('Session ended(server)');
+            res.status(200).send('Session ended');
+        }
+    });
+};

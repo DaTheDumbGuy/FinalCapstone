@@ -7,6 +7,8 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,
+
 });
 
 export const fetchReviews = () => {
@@ -37,4 +39,18 @@ export const register = async (credentials) => {
     }
 }
 
+export const checkLoginStatus = async () => {
+    try {
+        const response = await api.get('/auth/checkLoginStatus');
+        console.log('User is logged in:', response.data.member_id);
+        return response.data.member_id;
+    } catch (error) {
+        console.error('Error checking login status:', error);
+        throw error;
+    }
+};
+
+export const logout = () => {
+    return api.post('/auth/logout');
+}
 

@@ -4,9 +4,12 @@ footer{
     align-items: center;
     background-color: orange;
     font-family: 'Poppins', sans-serif;
-    padding: 10px;
+    flex-wrap: wrap;
+    padding: 10px 0;
 }
-
+footer .footer-item1, footer .footer-item2{
+    width: 40%;
+}
 footer h2{
     color: orangered;
 }
