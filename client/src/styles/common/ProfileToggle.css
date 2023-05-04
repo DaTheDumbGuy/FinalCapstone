@@ -9,6 +9,7 @@
     background-color: green;
     bottom: -80px;
     right: -20px;
+    /* padding: 0.5rem; */
 }
 .profileToggle{
     position: relative;

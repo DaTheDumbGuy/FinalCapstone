@@ -8,8 +8,6 @@
     box-sizing: border-box;
 }
 
-
-
 /* Animation -- utilities */
 .buzz{
     animation: buzz 0.2s;

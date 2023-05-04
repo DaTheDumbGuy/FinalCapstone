@@ -11,23 +11,25 @@ function Login() {
 
     const handleLogin = async (formData) => {
         try {
-            setIsLoading(true);
             const response = await login(formData);
             console.log(response.data);
             console.log('Redirecting to dashboard...');
-            // alert("Success Login!");
+
+            setIsLoading(true);
             setTimeout(() => {
                 setIsLoading(false);
                 window.location.href = '/';
             }, 1000);
-            // window.location.href = '/';
+
         } catch (error) {
             console.error(error);
+
             if (error.response.status === 401) {
                 setErrorMessage('Invalid email or password');
             } else {
                 setErrorMessage('Server error');
             }
+
             setSubmitted(true);
         }
     };

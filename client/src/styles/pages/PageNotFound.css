@@ -1,0 +1,30 @@
+.PageNotFoundContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    gap: 30px;
+    background-color: antiquewhite;
+}
+.PageNotFoundContainer h1{
+    font-size: 3rem;    
+}
+.PageNotFoundContainer .naldContainer{
+    width: 390px;
+}
+.PageNotFoundContainer img{
+    width: 100%;
+}
+.PNF-text{
+    font-size: 1.5rem;
+    width: 50%;
+    text-align: center;
+}
+
+.PageNotFoundContainer a{
+    text-decoration: none;
+    font-size:1.5rem;
+    color: black;
+}
