@@ -48,9 +48,6 @@ exports.registerAccount = async (req, res) => {
     email = email.trim();
     password = password.trim();
 
-
-
-    // console.log(`First Name: ${firstName}--Last Name: ${lastName} -- email ${email} password${password}`);
     try {
         const existingUser = await promiseConnection.query(`SELECT * FROM members WHERE email = ?`, [email]);
         if (existingUser[0].length > 0) {
@@ -130,4 +127,58 @@ exports.logout = (req, res) => {
             res.status(200).send('Session ended');
         }
     });
+};
+
+exports.userData = async (req, res) => {
+    console.log("You are here in userData");
+    try {
+        console.log(req.session.member_id);
+        const [user] = await promiseConnection.query('SELECT * FROM members WHERE member_id = ?', [req.session.member_id]);
+        console.log(user);
+        if (user) {
+            res.json(user[0]);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.sendStatus(500);
+    }
+}
+
+exports.update = async (req, res) => {
+    const { id } = req.params; // get user ID from route parameter
+
+    // get updated user data from request body
+    const { first_name, middle_name, last_name, address, phone_number, email, date_of_birth, gender, marital_status, occupation } = req.body;
+
+    try {
+        const updateUser = {
+            first_name: magic(first_name),
+            last_name: magic(last_name),
+            middle_name: middle_name ? magic(middle_name.trim()) : null,
+            address: address ? address.trim() : null,
+            phone_number: phone_number ? phone_number.trim() : null,
+            email: email ? email.trim() : null,
+            // date_of_birth: date_of_birth ? date_of_birth : null,
+            gender: gender ? gender : null,
+            marital_status: marital_status ? marital_status : null,
+            occupation: occupation ? occupation : null
+        };
+
+        // update user in database
+        await promiseConnection.query(
+            `UPDATE members SET ? WHERE member_id = ?`,
+            [updateUser, id]
+        );
+
+        return res.status(200).send({
+            message: "User account has been updated successfully."
+        });
+    } catch (err) {
+        console.log(`Error: ${err}`);
+        return res.status(500).send({
+            message: "An error occurred while updating user account."
+        });
+    }
 };

@@ -12,4 +12,7 @@ router.get('/checkLoginStatus', register_controller.loginStatus);
 
 router.post('/logout', register_controller.logout);
 
+router.get('/userData', register_controller.userData);
+
+router.put('/update/:id', register_controller.update);
 module.exports = router;

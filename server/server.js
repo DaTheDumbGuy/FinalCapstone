@@ -10,7 +10,7 @@ env.config({ path: './.env' });
 app.use(session({
     secret: 'mysecretkey',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: 3600000 } // expires in one hour
 }));
 

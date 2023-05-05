@@ -4,14 +4,12 @@ import '../../styles/common/Header.css';
 import { checkLoginStatus } from '../../services/api';
 import ProfileToggle from './ProfileToggle';
 
-//navigation(header) here
 function Header() {
   const [user, setUser] = useState('');
 
   useEffect(() => {
     checkLoginStatus()
       .then((member_id) => {
-        // history.push(`/profile/${member_id}`);
         setUser(member_id);
       })
       .catch((error) => {
@@ -31,7 +29,6 @@ function Header() {
           </li>
           <div><h1>LifeHome Mindanao</h1> </div>
           <li>
-            {/* Testing, you can remove this */}
             <a href='#contact'>Contact</a>
           </li>
           <li>

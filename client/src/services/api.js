@@ -54,3 +54,21 @@ export const logout = () => {
     return api.post('/auth/logout');
 }
 
+export const userData = async () => {
+    try {
+        const response = await api.get('/auth/userData');
+        return response.data;
+    } catch (error) {
+        console.error('User Data not Found:', error);
+        throw error;
+    }
+}
+
+export const updateUser = async (id, userData) => {
+    try {
+        const response = await api.put(`/auth/update/${id}`, userData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};

@@ -1,17 +1,17 @@
-.profileToggle button{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}   
 
-.profileToggle .dropdown{
-    position: absolute;
-    background-color: green;
-    bottom: -80px;
-    right: -20px;
-    /* padding: 0.5rem; */
+.dropdown-toggle{
+    border: none;
+    background: none;
 }
-.profileToggle{
-    position: relative;
-    background-color: red;
+.dropdown-menu-center {
+    left: 50% !important;
+    transform: translateX(-50%);
 }
+  
+.dropdown-toggle::after {
+    display: none!important;
+}
+.dropdown-menu {
+    min-width: unset !important;
+  }
+  
