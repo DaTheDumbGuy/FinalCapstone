@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { userData as Data } from '../../services/api';
 import { updateUser } from '../../services/api';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import '../../styles/pages/Account.css'
+import Footer from '../common/Footer';
+import Header from '../common/Header';
 
-// Need to do something with the profile.
-// Date of birth has bug
-// After it can update all input fields, do something with the design
-// Probably need to import the header and footer
 function Account() {
     const [editContactInformation, setEditContactInformation] = useState(false);
     const [editBasicInformation, setEditBasicInformation] = useState(false);
+    const [editBackground, setEditBackground] = useState(false);
     const [userData, setUserData] = useState(null);
-
 
 
     const toggleEditBasicInformation = () => {
@@ -21,6 +21,9 @@ function Account() {
         setEditContactInformation(!editContactInformation);
     };
 
+    const toggleEditBackground = () => {
+        setEditBackground(!editBackground);
+    };
     const newData = async (e) => {
         e.preventDefault();
         try {
@@ -38,6 +41,11 @@ function Account() {
         const fetchData = async () => {
             try {
                 const response = await Data();
+
+                const dbDate = new Date(response.date_of_birth);
+                const localDate = new Date(dbDate.getTime() - (dbDate.getTimezoneOffset() * 60000));
+                response.date_of_birth = localDate.toISOString().split('T')[0];
+
                 setUserData(response);
             } catch (error) {
                 console.error('User not Found: ', error);
@@ -46,23 +54,32 @@ function Account() {
         fetchData();
     }, []);
 
+    const handleInputChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setUserData((prevUserData) => ({
+            ...prevUserData,
+            [name]: value
+        }));
+    }
 
     return (
         <>
-            <h1>This is Account</h1>
-            <main>
-                <div className="row w-75 mx-auto border border p-2 mt-5">
-                    <div className='col-2'>
+            <Header />
+            <main className='m-lg-5'>
+                <div className="row w-75 mx-auto px-lg-5 py-lg-5 mt-5 rounded-4" style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}>
+                    {/* for profile */}
+                    {/* <div className='col-2'>
                         <div><img src='' alt='asdqew' /></div>
-                    </div>
-                    <div className="col-10">
+                    </div> */}
+                    <div className="col-12">
                         <header>
                             <h2 className='m-0'>Profile</h2>
-                            {editBasicInformation && <p className='text-danger'>*required fields</p>}
+                            <div style={{ height: "30px" }}>{(editBasicInformation || editBackground || editContactInformation) ? <p className='text-danger m-0 p-0'>*required fields</p> : ''}</div>
                         </header>
                         <section className='container'>
-                            <h4 className='border-bottom pb-2'>
-                                Basic Information <span>{!editBasicInformation && <button type='button' onClick={toggleEditBasicInformation}>Edit</button>}</span>
+                            <h4 className='border-bottom birder-1 pb-2 mb-3 d-flex align-items-center gap-2'>
+                                <span>Basic Information</span>{!editBasicInformation && <button type='button' className='border-0 bg-transparent' onClick={toggleEditBasicInformation}><CreateOutlinedIcon className='text-danger' /></button>}
                             </h4>
 
                             {editBasicInformation && userData ?
@@ -77,7 +94,7 @@ function Account() {
                                                     id='first_name'
                                                     className='form-control'
                                                     value={userData.first_name || ''}
-                                                    onChange={(e) => setUserData({ ...userData, first_name: e.target.value })}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className='col-4'>
@@ -88,7 +105,7 @@ function Account() {
                                                     id='middle_name'
                                                     className='form-control'
                                                     value={userData?.middle_name || ''}
-                                                    onChange={(e) => setUserData({ ...userData, middle_name: e.target.value })}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className='col-4'>
@@ -99,37 +116,36 @@ function Account() {
                                                     id='last_name'
                                                     className='form-control'
                                                     value={userData?.last_name || ''}
-                                                    onChange={(e) => setUserData({ ...userData, last_name: e.target.value })}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                         </div>
                                         <div className='row justify-content-between mb-4'>
                                             <div className='col-5'>
                                                 <label htmlFor='gender' className='form-label fw-bold'>Gender</label>
-                                                <select name='gender' className='form-control' id='gender' value={userData?.gender || ''} onChange={(e) => setUserData({ ...userData, gender: e.target.value })}>
+                                                <select name='gender' className='form-control' id='gender' value={userData?.gender || ''} onChange={handleInputChange}>
                                                     <option value=''>Select</option>
                                                     <option value='Male' >Male</option>
                                                     <option value='Female'>Female</option>
                                                     <option value='Other'>Other</option>
                                                 </select>
                                             </div>
-                                            {/* Encoutered a problem here on Date of Birth  */}
-                                            {/* <div className='col-5'>
-                                              
-                                                <label htmlFor='date_of_birth' className='form-label'>Birthday</label>
+                                            {/* Encoutered a problem here on Date of Birth(fixed)  */}
+                                            <div className='col-5'>
+                                                <label htmlFor='date_of_birth' className='form-label fw-bold'>Birth Date</label>
                                                 <input
                                                     type='date'
                                                     name='date_of_birth'
                                                     className='form-control'
                                                     id='date_of_birth'
-                                                    value={userData.date_of_birth}
-                                                    onChange={(e) => setUserData({ ...userData, date_of_birth: e.target.value })}
+                                                    value={userData.date_of_birth || ''}
+                                                    onChange={handleInputChange}
                                                 />
-                                            </div> */}
+                                            </div>
 
                                         </div>
-                                        <div className='d-flex justify-content-end gap-4'>
-                                            <button type='submit' className='btn btn-success'>Submit</button>
+                                        <div className='d-flex justify-content-end gap-2'>
+                                            <button type='submit' className='btn btn-success'>Save</button>
                                             <button type='button' className='btn btn-secondary' onClick={toggleEditBasicInformation}>Cancel</button>
                                         </div>
                                     </form>
@@ -137,8 +153,20 @@ function Account() {
                                 :
                                 <>
                                     <div className='row'>
-                                        <div className='col-6'>The label</div>
-                                        <div className='col-6'>Data</div>
+                                        <div className='col-6'>
+                                            <p className='fw-bold'>Full Name</p>
+                                            {/* <p className='fw-bold'>Middle Name</p>
+                                            <p className='fw-bold'>Last Name</p> */}
+                                            <p className='fw-bold'>Gender</p>
+                                            <p className='fw-bold'>Birth Date</p>
+                                        </div>
+                                        <div className='col-6'>
+                                            <p> {userData?.first_name || '\u00A0'} <span>{" "}</span> {userData?.middle_name || '\u00A0'} <span>{" "}</span> {userData?.last_name || ' \u00A0'}</p>
+                                            {/* <p> {userData?.middle_name || ''}</p>
+                                            <p> {userData?.last_name || ''}</p> */}
+                                            <p> {userData?.gender || '\u00A0'}</p>
+                                            <p> {userData?.date_of_birth || '\u00A0'}</p>
+                                        </div>
                                     </div>
                                 </>
                             }
@@ -146,8 +174,8 @@ function Account() {
 
                         {/* Contact Information */}
                         <section className='container'>
-                            <h4 className='border-bottom pb-2'>
-                                Conactt Information <span>{!editContactInformation && <button type='button' onClick={toggleContactInformation}>Edit</button>}</span>
+                            <h4 className='border-bottom birder-1 pb-2 mb-3 d-flex align-items-center gap-2'>
+                                <span>Contact Information</span>{!editContactInformation && <button type='button' className='border-0 bg-transparent' onClick={toggleContactInformation}><CreateOutlinedIcon className='text-danger' /></button>}
                             </h4>
 
                             {editContactInformation && userData ?
@@ -161,8 +189,8 @@ function Account() {
                                                     name='email'
                                                     id='email'
                                                     className='form-control'
-                                                    value={userData.email || ''}
-                                                    onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                                                    value={userData.email}
+                                                    readOnly
                                                 />
                                             </div>
                                             <div className='col-4'>
@@ -173,7 +201,7 @@ function Account() {
                                                     id='phone_number'
                                                     className='form-control'
                                                     value={userData?.phone_number || ''}
-                                                    onChange={(e) => setUserData({ ...userData, phone_number: e.target.value })}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className='col-4'>
@@ -184,12 +212,12 @@ function Account() {
                                                     id='address'
                                                     className='form-control'
                                                     value={userData?.address || ''}
-                                                    onChange={(e) => setUserData({ ...userData, address: e.target.value })}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                         </div>
-                                        <div className='d-flex justify-content-end gap-4'>
-                                            <button type='submit' className='btn btn-success'>Submit</button>
+                                        <div className='d-flex justify-content-end gap-2'>
+                                            <button type='submit' className='btn btn-success'>Save</button>
                                             <button type='button' className='btn btn-secondary' onClick={toggleContactInformation}>Cancel</button>
                                         </div>
                                     </form>
@@ -197,8 +225,72 @@ function Account() {
                                 :
                                 <>
                                     <div className='row'>
-                                        <div className='col-6'>The label</div>
-                                        <div className='col-6'>Data</div>
+                                        <div className='col-6'>
+                                            <p className='fw-bold'>Email </p>
+                                            <p className='fw-bold'>Phone Number </p>
+                                            <p className='fw-bold'>Address </p>
+                                        </div>
+                                        <div className='col-6'>
+                                            <p> {userData?.email || '\u00A0'}</p>
+                                            <p> {userData?.phone_number || '\u00A0'}</p>
+                                            <p> {userData?.address || '\u00A0'}</p>
+                                        </div>
+                                    </div>
+                                </>
+                            }
+                        </section>
+
+                        {/* Background */}
+                        <section className='container'>
+                            <h4 className='border-bottom birder-1 pb-2 mb-3 d-flex align-items-center gap-2'>
+                                <span>Background</span>{!editBackground && <button type='button' className='border-0 bg-transparent' onClick={toggleEditBackground}><CreateOutlinedIcon className='text-danger' /></button>}
+                            </h4>
+
+                            {editBackground && userData ?
+                                <>
+                                    <form onSubmit={newData}>
+                                        <div className='row mb-4 justify-content-between'>
+                                            <div className='col-5'>
+                                                <label htmlFor='marital_status' className='form-label fw-bold'>Marital Status</label>
+                                                <select name='marital_status' className='form-control' id='marital_status' value={userData?.marital_status || ''} onChange={handleInputChange}>
+                                                    <option value=''>Select</option>
+                                                    <option value='Single' >Single</option>
+                                                    <option value='Married'>Married</option>
+                                                    <option value='Divorced'>Divorced</option>
+                                                    <option value='Widowed'>Widowed</option>
+                                                </select>
+                                            </div>
+                                            {/*  */}
+                                            <div className='col-5'>
+                                                <label htmlFor='occupation' className='form-label fw-bold'>Occupation</label>
+                                                <input
+                                                    type='text'
+                                                    name='occupation'
+                                                    id='occupation'
+                                                    className='form-control'
+                                                    value={userData?.occupation || ''}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+
+                                        </div>
+                                        <div className='d-flex justify-content-end gap-2'>
+                                            <button type='submit' className='btn btn-success'>Save</button>
+                                            <button type='button' className='btn btn-secondary' onClick={toggleEditBackground}>Cancel</button>
+                                        </div>
+                                    </form>
+                                </>
+                                :
+                                <>
+                                    <div className='row'>
+                                        <div className='col-6'>
+                                            <p className='fw-bold'>Marital Status </p>
+                                            <p className='fw-bold'>Occupation </p>
+                                        </div>
+                                        <div className='col-6'>
+                                            <p> {userData?.marital_status || '\u00A0'}</p>
+                                            <p> {userData?.occupation || '\u00A0'}</p>
+                                        </div>
                                     </div>
                                 </>
                             }
@@ -206,7 +298,8 @@ function Account() {
                         </section>
                     </div>
                 </div>
-            </main>
+            </main >
+            <Footer />
         </>
     )
 }

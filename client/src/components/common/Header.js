@@ -15,17 +15,25 @@ function Header() {
       .catch((error) => {
         console.log('User not logged in:', error);
       });
+
+    // Scroll to the #about section if the current URL contains it
+    if (window.location.hash === '#about') {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   }, []);
 
   return (
     <header>
-      <nav>
+      <nav className='nav-container'>
         <ul className='nav'>
           <li>
             <Link to="/" className='navLink'>Home</Link>
           </li>
           <li>
-            <a href='#about'>About</a>
+            <a href={window.location.pathname === '/' ? '#about' : `${window.location.origin}/#about`}>About</a>
           </li>
           <div><h1>LifeHome Mindanao</h1> </div>
           <li>

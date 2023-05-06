@@ -160,7 +160,7 @@ exports.update = async (req, res) => {
             address: address ? address.trim() : null,
             phone_number: phone_number ? phone_number.trim() : null,
             email: email ? email.trim() : null,
-            // date_of_birth: date_of_birth ? date_of_birth : null,
+            date_of_birth: date_of_birth ? new Date(date_of_birth).toISOString().slice(0, 10) : null,
             gender: gender ? gender : null,
             marital_status: marital_status ? marital_status : null,
             occupation: occupation ? occupation : null

@@ -1,6 +1,8 @@
 :root{
-    --light-blue: lightblue;
-    --primary-color: beige;
+    --light-color: #FFEBB4;
+    --lightest-color: #FBFFB1;
+    --dark-color: #FFBFA9;
+    --darkest-color: #FFACAC;
 }
 *{
     margin: 0;

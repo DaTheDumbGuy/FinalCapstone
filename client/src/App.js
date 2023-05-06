@@ -57,6 +57,8 @@ function MainContent() {
       <Header />
       <main>
         {/* Please put here the content  */}
+        <section className='text-bg-dark' style={{ height: "100vh" }}> Section one</section>
+        <section className='text-bg-primary' style={{ height: "100vh" }} id='about'> Section two</section>
       </main>
       <Footer />
 
